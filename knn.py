@@ -5,7 +5,7 @@ class Knn :
         self.etiquettes = None
 
     
-    def read(self, training_data, training_labels):
+    def fit(self, training_data, training_labels):
         self.training_data   = training_data
         self.training_labels = training_labels
     
@@ -33,6 +33,13 @@ class Knn :
             
         winning_class = max(votes_counter, key=votes_counter.get)
         return winning_class
+    
+    def predict(self, data_to_predict):
+        predictions_list = []
+        for point in data_to_predict:
+            prediction = self._predict_one_point(point)
+            predictions_list.append(prediction)
+            return predictions_list
     
     def evaluate(self, test_data, real_labels):
         predictions   = self.predict(test_data)
