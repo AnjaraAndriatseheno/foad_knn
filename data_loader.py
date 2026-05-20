@@ -4,7 +4,7 @@ from sklearn.preprocessing import StandardScaler
 
 def load_data(file_path, target_col="target"):
 	if ".csv" in file_path:
-		df = pandas.read_csv(file_path)
+		df = pandas.read_csv(file_path, sep=";", skiprows=1)
 
 	elif ".xlsx" in file_path:
 		df = pandas.read_excel(file_path)
@@ -30,7 +30,7 @@ def normalize(X):
 
 def load_normalized_data(file_path, target_col="target"):
 	print("Loading data phase")
-	X, Y = load_data(file_path, target_col="target")
+	X, Y = load_data(file_path, target_col=target_col)
 	standard_scaler_object, X_normalized = normalize(X)
 	print("Sucess : Loading data")
 	print("-"*20)
