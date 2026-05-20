@@ -33,3 +33,12 @@ class Knn :
             
         winning_class = max(votes_counter, key=votes_counter.get)
         return winning_class
+    
+    def evaluate(self, test_data, real_labels):
+        predictions   = self.predict(test_data)
+        correct_count = 0
+        for prediction, real_label in zip(predictions, real_labels):
+            if prediction == real_label:
+                correct_count += 1
+        accuracy = correct_count / len(real_labels)
+        return accuracy
